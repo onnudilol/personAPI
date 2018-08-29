@@ -14,7 +14,6 @@ let app = new Vue({
         submitTeam () {
             const self = this;
             self.prevName = self.personName;
-            let name = self.personName;
 
             axios
                 .get("/api/teams/" + self.personName)
@@ -23,7 +22,7 @@ let app = new Vue({
                         let teamData = response.data;
 
                         if (teamData === null) {
-                            self.teams = name + " is not a member of any team.";
+                            self.teams = false;
                         }
                         else {
                             self.teams = teamData;
@@ -36,7 +35,6 @@ let app = new Vue({
         submitMembers () {
             const self = this;
             self.prevTeam = self.teamName;
-            let name = self.teamName;
 
             axios
                 .get("/api/members/" + this.teamName)
@@ -45,7 +43,7 @@ let app = new Vue({
                         let memberData = response.data;
 
                         if (memberData === null) {
-                            self.members = name + " is not a member of any team.";
+                            self.members = false;
                         }
                         else {
                             self.members = memberData;
